@@ -1,0 +1,15 @@
+.idea/
+*.exe
+*.log
+walletapi/transfer_dataset.json
+output/
+appID-serverPublicKey.txt
+appID.txt
+walletapi/ops.json
+config/ops.json
+integration/integration.env
+docs/
+*.ps1
+*.py
+scripts/
+integration/
