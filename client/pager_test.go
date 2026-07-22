@@ -34,6 +34,13 @@ func TestClampPageLimitPaginatedPath(t *testing.T) {
 	if req.Limit != DefaultPageLimit {
 		t.Fatalf("FindTradeLog default limit: got %d want %d", req.Limit, DefaultPageLimit)
 	}
+
+	newlyReq := &FindTradeNewlyReq{}
+	newlyReq.Limit = 5000
+	clampPageLimit("/api/FindTradeNewly", newlyReq)
+	if newlyReq.Limit != MaxPageLimit {
+		t.Fatalf("FindTradeNewly limit: got %d want %d", newlyReq.Limit, MaxPageLimit)
+	}
 }
 
 func TestClampPageLimitNonPaginatedPath(t *testing.T) {

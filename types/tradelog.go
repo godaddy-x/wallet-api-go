@@ -31,8 +31,10 @@ type BalanceLogResult struct {
 	CreateAt           int64  `json:"createAt"`
 }
 
-// TradeLogResult is a confirmed trade log entry.
-// TxAction: send | receive | internal | fee. DataType: see TradeDataType (0=none, 1=transfer, 2=summary, 3=contract, 4=batch, 5=deploy, 6=approve, 7=stake, 8=unstake, 9=withdraw unfreeze).
+// TradeLogResult is a confirmed trade log entry (final data after on-chain confirmation).
+// The same logical transfer may have appeared earlier as TradeNewlyResult (pending);
+// correlate with UniqueHash, not id. TxAction: send | receive | internal | fee.
+// DataType: see TradeDataType (0=none, 1=transfer, 2=summary, 3=contract, 4=batch, 5=deploy, 6=approve, 7=stake, 8=unstake, 9=withdraw unfreeze).
 //easyjson:json
 type TradeLogResult struct {
 	ID              int64    `json:"id"`
@@ -68,15 +70,20 @@ type TradeLogResult struct {
 	Signature       string   `json:"signature"`
 	CreateAt        int64    `json:"createAt"`
 	UpdateAt        int64    `json:"updateAt"`
-	UniqueHash      string   `json:"uniqueHash"`
+	UniqueHash      string   `json:"uniqueHash"` // stable key shared with TradeNewlyResult for pending→confirmed upsert
 	State           int64    `json:"state"`
 }
 
+// FindTradeLogReq lists confirmed trade logs (incremental lastID pagination).
+//
 //easyjson:json
 type FindTradeLogReq struct {
 	common.BaseReq
 }
 
+// FindTradeLogRes holds confirmed trade log rows. Pair with FindTradeNewlyRes
+// and match rows by TradeLogResult.UniqueHash / TradeNewlyResult.UniqueHash.
+//
 //easyjson:json
 type FindTradeLogRes struct {
 	Result []TradeLogResult `json:"result"`

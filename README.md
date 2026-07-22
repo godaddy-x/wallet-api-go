@@ -322,7 +322,7 @@ Additional details:
 | Lifecycle | `New`, `NewFromFiles`, `Connected`, `Close`, `Transfer` |
 | OPS | `CreateWallet`, `CreateAccount`, `CreateTrade`, `SubmitTrade`, `ImportAddress`, … |
 | MPC | `FindWalletList`, `CreateMPCWallet`, `CliCreateAccount`, `CliCreateAddress`, `SignTransaction` |
-| Log watch | `WatchTradeLog`, `WatchBalanceLog`, `WatchMonitorAlert` |
+| Log watch | `WatchTradeLog`, `WatchTradeNewly`, `WatchBalanceLog`, `WatchMonitorAlert` |
 | Trade hooks | `AddTradeCreatedHook`, `ValidatePendingDataSignHook`, … |
 
 All methods require a non-nil request pointer (`&client.XxxReq{}` at minimum). `nil` returns `client.ErrNilRequest`.
@@ -335,7 +335,7 @@ All methods require a non-nil request pointer (`&client.XxxReq{}` at minimum). `
 | Address | `ImportAddress`, `FindAddressByAddress`, `FindAddressByAccountID`, `VerifyAddress`, `GetBalanceByAddress`, `GetAddressBalanceList` |
 | Contract | `GetContracts`, `GetContractTemplates`, `DeployContract`, `SubmitDeployContract`, `SubmitSmartContractTrade` |
 | Chain | `SymbolBlockList`, `GetBlockStatus` |
-| Trade | `CreateTrade`, `SubmitTrade`, `SpeedUpTransferTrade`, `CancelTransferTrade`, `CreateSummaryTx`, `EvaluateSummaryFeeDeficit`, `FindTradeLog`, `FindBalanceLog`, `FindMonitorAlert` |
+| Trade | `CreateTrade`, `SubmitTrade`, `SpeedUpTransferTrade`, `CancelTransferTrade`, `CreateSummaryTx`, `EvaluateSummaryFeeDeficit`, `FindTradeLog`, `FindTradeNewly`, `FindBalanceLog`, `FindMonitorAlert` |
 | Batch | `CreateBatchTransferTrade`, `CreateBatchTransferApproveTrade`, `GetBatchTransferAllowance`, `SpeedUpBatchTransferTrade`, `CancelBatchTransferTrade` |
 | Stake | `CreateStakeTrade`, `CreateUnstakeTrade`, `CreateWithdrawUnfreezeTrade`, `GetAccountResourceDetail` |
 | Wallet | `CreateWallet`, `FindWalletByWalletID` |

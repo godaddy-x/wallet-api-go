@@ -18,8 +18,15 @@ var incrementalEmptyBackoff = []time.Duration{
 	5 * time.Second,
 }
 
-// TradeLogHandler is invoked for each new trade log row. Return a non-nil error to stop watching.
+// TradeLogHandler is invoked for each confirmed trade log row (final data).
+// Pair with WatchTradeNewly / TradeNewlyHandler for the pending stage; correlate
+// both callbacks on entry.UniqueHash. Return a non-nil error to stop watching.
 type TradeLogHandler func(entry TradeLogResult) error
+
+// TradeNewlyHandler is invoked for each pending (unconfirmed scan) trade row.
+// The same transfer later appears in TradeLogHandler with the same UniqueHash
+// after confirmation. Return a non-nil error to stop watching.
+type TradeNewlyHandler func(entry TradeNewlyResult) error
 
 // BalanceLogHandler is invoked for each new balance log row. Return a non-nil error to stop watching.
 type BalanceLogHandler func(entry BalanceLogResult) error
@@ -27,7 +34,9 @@ type BalanceLogHandler func(entry BalanceLogResult) error
 // MonitorAlertHandler is invoked for each new monitor alert row. Return a non-nil error to stop watching.
 type MonitorAlertHandler func(entry MonitorAlertResult) error
 
-// WatchTradeLog incrementally pulls trade logs using lastID pagination and invokes fn for each row.
+// WatchTradeLog incrementally pulls confirmed trade logs using lastID pagination
+// and invokes fn for each row (final data after on-chain confirmation).
+// For the pending stage use WatchTradeNewly; correlate both streams on UniqueHash.
 // Page size (200) and poll/backoff intervals are fixed by the SDK.
 // startLastID is the persisted watermark; 0 starts from the oldest available row.
 // It blocks until ctx is cancelled, fn returns an error, or an OPS request fails.
@@ -40,6 +49,36 @@ func (c *WalletClient) WatchTradeLog(ctx context.Context, startLastID int64, fn 
 		req.LastID = cursor
 		req.Limit = incrementalPageSize
 		res, err := c.FindTradeLog(req)
+		if err != nil {
+			return 0, cursor, err
+		}
+		next := incrementalNextCursor(cursor, res.Limit.LastID, len(res.Result), func(i int) int64 {
+			return res.Result[i].ID
+		})
+		for _, row := range res.Result {
+			if err := fn(row); err != nil {
+				return 0, next, err
+			}
+		}
+		return len(res.Result), next, nil
+	})
+}
+
+// WatchTradeNewly incrementally pulls pending (unconfirmed scan) trade rows using
+// lastID pagination and invokes fn for each row. Transfers are usually seen here
+// before WatchTradeLog; use UniqueHash to merge pending and confirmed into one
+// local record. Page size (200) and poll/backoff intervals are fixed by the SDK.
+// startLastID is the persisted watermark; 0 starts from the oldest available row.
+// It blocks until ctx is cancelled, fn returns an error, or an OPS request fails.
+func (c *WalletClient) WatchTradeNewly(ctx context.Context, startLastID int64, fn TradeNewlyHandler) error {
+	if fn == nil {
+		return errors.New("trade newly handler is nil")
+	}
+	return watchIncremental(ctx, startLastID, incrementalPageSize, incrementalCatchUpWait, incrementalEmptyBackoff, func(cursor int64) (int, int64, error) {
+		req := &FindTradeNewlyReq{}
+		req.LastID = cursor
+		req.Limit = incrementalPageSize
+		res, err := c.FindTradeNewly(req)
 		if err != nil {
 			return 0, cursor, err
 		}

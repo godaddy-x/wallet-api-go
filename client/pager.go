@@ -21,6 +21,7 @@ var paginatedPaths = map[string]struct{}{
 	"/api/GetContracts":           {},
 	"/api/GetContractTemplates":   {},
 	"/api/FindTradeLog":           {},
+	"/api/FindTradeNewly":         {},
 	"/api/FindBalanceLog":         {},
 	"/api/FindMonitorAlert":       {},
 	"/api/FindWalletList":         {},

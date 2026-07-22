@@ -181,9 +181,21 @@ func (c *WalletClient) EvaluateSummaryFeeDeficit(req *EvaluateSummaryFeeDeficitR
 	return res, nil
 }
 
+// FindTradeLog incrementally lists confirmed trade log rows (final, post-confirmation data).
+// Use lastID pagination (records with id > lastID). Correlate with pending rows from
+// FindTradeNewly via UniqueHash — do not join on id across the two APIs.
 func (c *WalletClient) FindTradeLog(req *FindTradeLogReq) (FindTradeLogRes, error) {
 	var res FindTradeLogRes
 	return res, c.sendOPS("/api/FindTradeLog", req, &res)
+}
+
+// FindTradeNewly incrementally lists pending (unconfirmed scan) trade rows.
+// A transfer typically appears here first; after on-chain confirmation the same
+// logical transfer is returned by FindTradeLog with the same UniqueHash.
+// Use UniqueHash to upsert one local record (pending → confirmed), not newly.id vs tradelog.id.
+func (c *WalletClient) FindTradeNewly(req *FindTradeNewlyReq) (FindTradeNewlyRes, error) {
+	var res FindTradeNewlyRes
+	return res, c.sendOPS("/api/FindTradeNewly", req, &res)
 }
 
 func (c *WalletClient) FindBalanceLog(req *FindBalanceLogReq) (FindBalanceLogRes, error) {
