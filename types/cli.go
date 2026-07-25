@@ -36,7 +36,8 @@ type CliFindWalletListRes struct {
 type CliCreateMPCWalletReq struct {
 	common.BaseReq
 	Alias     string `json:"alias"`
-	Algorithm string `json:"algorithm"` // ecdsa | ed25519
+	Algorithm string `json:"algorithm"`         // ecdsa | ed25519
+	KeyMode   string `json:"keyMode,omitempty"` // mpc（默认）| single（nodeBindings[0] 单签）
 }
 
 // CliCreateMPCWalletRes is the CreateMPCWallet response.

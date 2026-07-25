@@ -731,6 +731,12 @@ func easyjsonC5d09f7cDecodeGithubComGodaddyXWalletApiGoTypes6(in *jlexer.Lexer, 
 			} else {
 				out.Algorithm = string(in.String())
 			}
+		case "keyMode":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.KeyMode = string(in.String())
+			}
 		case "cmd":
 			if in.IsNull() {
 				in.Skip()
@@ -790,6 +796,11 @@ func easyjsonC5d09f7cEncodeGithubComGodaddyXWalletApiGoTypes6(out *jwriter.Write
 		const prefix string = ",\"algorithm\":"
 		out.RawString(prefix)
 		out.String(string(in.Algorithm))
+	}
+	if in.KeyMode != "" {
+		const prefix string = ",\"keyMode\":"
+		out.RawString(prefix)
+		out.String(string(in.KeyMode))
 	}
 	{
 		const prefix string = ",\"cmd\":"
