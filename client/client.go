@@ -133,16 +133,18 @@ func (c *WalletClient) Connected() (ops bool, mpc bool) {
 	return ops, mpc
 }
 
-// Close disconnects OPS and MPC sessions.
+// Close stops OPS and MPC WebSocket sessions and disables SDK auto-reconnect.
 func (c *WalletClient) Close() {
 	if c == nil {
 		return
 	}
 	if c.opsSDK != nil {
-		c.opsSDK.DisconnectWebSocket()
+		c.opsSDK.Close()
+		c.opsSDK = nil
 	}
 	if c.mpcSDK != nil {
-		c.mpcSDK.DisconnectWebSocket()
+		c.mpcSDK.Close()
+		c.mpcSDK = nil
 	}
 }
 
