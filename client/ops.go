@@ -290,6 +290,12 @@ func (c *WalletClient) FindWalletByWalletID(req *FindWalletByWalletIDReq) (FindW
 	return res, c.sendOPS("/api/FindWalletByWalletID", req, &res)
 }
 
+// OpsFindWalletList calls OPS /api/FindWalletList.
+func (c *WalletClient) OpsFindWalletList(req *FindWalletListReq) (FindWalletListRes, error) {
+	var res FindWalletListRes
+	return res, c.sendOPS("/api/FindWalletList", req, &res)
+}
+
 // --- subscribe ---
 
 func (c *WalletClient) CreateSubscribe(req *CreateSubscribeReq) (CreateSubscribeRes, error) {

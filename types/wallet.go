@@ -2,6 +2,7 @@ package types
 
 import (
 	"github.com/godaddy-x/freego/node/common"
+	"github.com/godaddy-x/freego/ormx/sqlc"
 )
 
 //easyjson:json
@@ -32,6 +33,23 @@ type FindWalletByWalletIDReq struct {
 //easyjson:json
 type FindWalletByWalletIDRes struct {
 	Result WalletResult `json:"result"`
+}
+
+// FindWalletListReq lists wallets on OPS for the authenticated app.
+//
+//easyjson:json
+type FindWalletListReq struct {
+	common.BaseReq
+	WalletID string `json:"walletID,omitempty"`
+	Alias    string `json:"alias,omitempty"`
+}
+
+// FindWalletListRes is the OPS FindWalletList response.
+//
+//easyjson:json
+type FindWalletListRes struct {
+	Result []WalletResult `json:"result"`
+	Limit  sqlc.Limit     `json:"limit"`
 }
 
 //easyjson:json

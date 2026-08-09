@@ -3,7 +3,7 @@ module github.com/godaddy-x/wallet-api-go
 go 1.26
 
 require (
-	github.com/godaddy-x/freego v1.1.30
+	github.com/godaddy-x/freego v1.1.31
 	github.com/godaddy-x/wallet-adapter v1.0.9
 	github.com/mailru/easyjson v0.9.1
 )
