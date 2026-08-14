@@ -6,16 +6,17 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/godaddy-x/freego/utils"
-	"github.com/godaddy-x/freego/utils/sdk"
-	"github.com/godaddy-x/freego/zlog"
+	"github.com/godaddy-x/freego/client/ws"
+	"github.com/godaddy-x/freego/core/str"
+	"github.com/godaddy-x/freego/infra/zlog"
+	"github.com/godaddy-x/freego/protocol/wire"
 	"github.com/godaddy-x/wallet-api-go/types"
 )
 
 var cliSignMu sync.Mutex
 
 func signTransaction(
-	cliSDK *sdk.SocketSDK,
+	cliSDK *ws.SDK,
 	req *CliSignTransactionReq,
 	res *CliSignTransactionRes,
 	wsTimeoutSec int64,
@@ -25,8 +26,8 @@ func signTransaction(
 	return cliSDK.SendWebSocketMessage("/api/SignTransaction", req, res, true, true, wsTimeoutSec)
 }
 
-func newLongLivedSocket(cfg SdkConfig) (*sdk.SocketSDK, error) {
-	c := sdk.NewSocketSDK(cfg.Domain)
+func newLongLivedSocket(cfg SdkConfig) (*ws.SDK, error) {
+	c := ws.New(cfg.Domain)
 	c.SetClientNo(cfg.ClientNo)
 	_ = c.SetMLDSA87Object(cfg.ClientNo, cfg.ClientPrk, cfg.ServerPub)
 	c.SetSSL(cfg.SSL)
@@ -53,11 +54,11 @@ func newLongLivedSocket(cfg SdkConfig) (*sdk.SocketSDK, error) {
 	return c, nil
 }
 
-func loginSocket(cfg SdkConfig) (sdk.AuthToken, error) {
+func loginSocket(cfg SdkConfig) (wire.AuthToken, error) {
 	cliSignMu.Lock()
 	defer cliSignMu.Unlock()
 
-	loginSDK := sdk.NewSocketSDK(cfg.Domain)
+	loginSDK := ws.New(cfg.Domain)
 	loginSDK.SetClientNo(cfg.ClientNo)
 	_ = loginSDK.SetMLDSA87Object(cfg.ClientNo, cfg.ClientPrk, cfg.ServerPub)
 	loginSDK.SetSSL(cfg.SSL)
@@ -65,11 +66,11 @@ func loginSocket(cfg SdkConfig) (sdk.AuthToken, error) {
 
 	req, err := loginRequestForConfig(cfg)
 	if err != nil {
-		return sdk.AuthToken{}, err
+		return wire.AuthToken{}, err
 	}
-	resp := sdk.AuthToken{}
+	resp := wire.AuthToken{}
 	if err := loginSDK.LoginByWebSocketPlan2Auto(cfg.KeyPath, cfg.LoginPath, req, &resp, 10); err != nil {
-		return sdk.AuthToken{}, err
+		return wire.AuthToken{}, err
 	}
 	return resp, nil
 }

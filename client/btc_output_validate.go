@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/godaddy-x/freego/utils/decimal"
+	"github.com/godaddy-x/freego/core/decimal"
 	adapter "github.com/godaddy-x/wallet-adapter"
 )
 

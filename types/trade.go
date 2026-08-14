@@ -1,7 +1,7 @@
 package types
 
 import (
-	"github.com/godaddy-x/freego/node/common"
+	common "github.com/godaddy-x/freego/protocol/dto"
 	adapter "github.com/godaddy-x/wallet-adapter"
 )
 
@@ -224,16 +224,16 @@ type SpeedUpTransferTradeReq struct {
 //easyjson:json
 type CreateSummaryTxReq struct {
 	common.BaseReq
-	AccountID            string             `json:"accountID"`
-	MinTransfer          string             `json:"minTransfer"`
-	RetainedBalance      string             `json:"retainedBalance"`
-	Address              string             `json:"address"`
-	Coin                 CoinInfo           `json:"coin"`
-	FeeRate              string             `json:"feeRate"`
-	AddressStartIndex    int64              `json:"addressStartIndex"`
-	AddressLimit         int64              `json:"addressLimit"`
-	Confirms             int64              `json:"confirms"`
-	FeesSupportAccount   FeesSupportAccount `json:"feesSupportAccount"`
-	Memo                 string             `json:"memo"`
-	Sid                  string             `json:"sid"`
+	AccountID          string             `json:"accountID"`
+	MinTransfer        string             `json:"minTransfer"`
+	RetainedBalance    string             `json:"retainedBalance"`
+	Address            string             `json:"address"`
+	Coin               CoinInfo           `json:"coin"`
+	FeeRate            string             `json:"feeRate"`
+	AddressStartIndex  int64              `json:"addressStartIndex"`
+	AddressLimit       int64              `json:"addressLimit"`
+	Confirms           int64              `json:"confirms"`
+	FeesSupportAccount FeesSupportAccount `json:"feesSupportAccount"`
+	Memo               string             `json:"memo"`
+	Sid                string             `json:"sid"`
 }

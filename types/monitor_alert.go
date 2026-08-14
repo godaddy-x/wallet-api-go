@@ -1,8 +1,8 @@
 package types
 
 import (
-	"github.com/godaddy-x/freego/node/common"
-	"github.com/godaddy-x/freego/ormx/sqlc"
+	"github.com/godaddy-x/freego/core/query"
+	common "github.com/godaddy-x/freego/protocol/dto"
 )
 
 // MonitorAlertResult is a monitor rule hit event; pull incrementally by id.

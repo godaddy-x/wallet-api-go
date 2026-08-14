@@ -3,7 +3,7 @@ package client
 import (
 	"reflect"
 
-	"github.com/godaddy-x/freego/node/common"
+	common "github.com/godaddy-x/freego/protocol/dto"
 )
 
 const (
@@ -14,8 +14,8 @@ const (
 )
 
 var paginatedPaths = map[string]struct{}{
-	"/api/FindAccountByWalletID": {},
-	"/api/GetAccountBalanceList": {},
+	"/api/FindAccountByWalletID":  {},
+	"/api/GetAccountBalanceList":  {},
 	"/api/FindAddressByAccountID": {},
 	"/api/GetAddressBalanceList":  {},
 	"/api/GetContracts":           {},

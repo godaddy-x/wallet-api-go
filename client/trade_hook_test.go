@@ -4,7 +4,7 @@ import (
 	"encoding/hex"
 	"testing"
 
-	"github.com/godaddy-x/freego/utils"
+	"github.com/godaddy-x/freego/core/str"
 	adapter "github.com/godaddy-x/wallet-adapter"
 )
 

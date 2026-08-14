@@ -1,6 +1,6 @@
 package types
 
-import "github.com/godaddy-x/freego/node/common"
+import common "github.com/godaddy-x/freego/protocol/dto"
 
 // CreateStakeTradeReq builds TRX Stake 2.0 freezeBalanceV2 pending sign tx (dataType=7).
 //

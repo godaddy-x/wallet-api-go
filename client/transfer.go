@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/godaddy-x/freego/utils"
+	"github.com/godaddy-x/freego/core/str"
 	adapter "github.com/godaddy-x/wallet-adapter"
 )
 

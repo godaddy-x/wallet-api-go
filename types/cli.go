@@ -1,6 +1,6 @@
 package types
 
-import "github.com/godaddy-x/freego/node/common"
+import common "github.com/godaddy-x/freego/protocol/dto"
 
 // CliFindWalletListReq lists wallets on MPC.
 //

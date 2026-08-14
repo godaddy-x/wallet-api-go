@@ -7,8 +7,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/godaddy-x/freego/utils"
-	"github.com/godaddy-x/freego/utils/sdk"
+	"github.com/godaddy-x/freego/client/ws"
+	"github.com/godaddy-x/freego/core/str"
 )
 
 // ErrNilRequest is returned when an API method is called with a nil request pointer.
@@ -50,8 +50,8 @@ type ConfigHook func(*Config) error
 type WalletClient struct {
 	appKey            string
 	wsTimeout         int64
-	opsSDK            *sdk.SocketSDK
-	mpcSDK            *sdk.SocketSDK
+	opsSDK            *ws.SDK
+	mpcSDK            *ws.SDK
 	tradeCreatedHooks []TradeCreatedHook
 }
 
@@ -221,7 +221,7 @@ func wsTimeout(sec int64) int64 {
 	return 300
 }
 
-func sendWS(sdk *sdk.SocketSDK, path string, req, res interface{}, timeoutSec int64) error {
+func sendWS(sdk *ws.SDK, path string, req, res interface{}, timeoutSec int64) error {
 	if isNilReq(req) {
 		return ErrNilRequest
 	}

@@ -1,8 +1,8 @@
 package types
 
 import (
-	"github.com/godaddy-x/freego/node/common"
-	"github.com/godaddy-x/freego/ormx/sqlc"
+	"github.com/godaddy-x/freego/core/query"
+	common "github.com/godaddy-x/freego/protocol/dto"
 	adapter "github.com/godaddy-x/wallet-adapter"
 )
 
@@ -83,11 +83,11 @@ type CallSmartContractABIReq struct {
 //
 //easyjson:json
 type CallSmartContractABIRes struct {
-	Method         string `json:"method"`
-	Value          string `json:"value"`
-	RawHex         string `json:"rawHex"`
-	Status         uint64 `json:"status"`
-	Exception      string `json:"exception"`
-	Uint256Wei     string `json:"uint256Wei,omitempty"`
-	Uint256Human   string `json:"uint256Human,omitempty"`
+	Method       string `json:"method"`
+	Value        string `json:"value"`
+	RawHex       string `json:"rawHex"`
+	Status       uint64 `json:"status"`
+	Exception    string `json:"exception"`
+	Uint256Wei   string `json:"uint256Wei,omitempty"`
+	Uint256Human string `json:"uint256Human,omitempty"`
 }
