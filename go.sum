@@ -4,10 +4,10 @@ github.com/BurntSushi/toml v1.5.0 h1:W5quZX/G/csjUnuI8SUYlsHs9M38FC7znL0lIO+DvMg
 github.com/BurntSushi/toml v1.5.0/go.mod h1:ukJfTF/6rtPPRCnwkur4qwRxa8vTRFBF0uk2lLoLwho=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
-github.com/godaddy-x/eccrypto v1.1.17 h1:2IQpJoGaRzCqMU+9Dzt3wLeTrY/TRzC5CtQxKvKD/DY=
-github.com/godaddy-x/eccrypto v1.1.17/go.mod h1:yF2UZDeOaJ8U3DfmdaDP4by7Vr7SaWRpZ3d4zOczoUw=
-github.com/godaddy-x/freego v1.1.32 h1:SO1RGvp52YxOeTu/5Y8g8NUHBHkHsfApIoDfqi2N6m0=
-github.com/godaddy-x/freego v1.1.32/go.mod h1:sO6K//AIcu5FZ2GpaV5hR6FnnIX0F/2+9sYU7Yjz6WU=
+github.com/godaddy-x/eccrypto v1.1.20 h1:vNQ7wK7Vl3+/lCVNr/2+H2EJF+zcXT7bUD6+bp8Woec=
+github.com/godaddy-x/eccrypto v1.1.20/go.mod h1:yF2UZDeOaJ8U3DfmdaDP4by7Vr7SaWRpZ3d4zOczoUw=
+github.com/godaddy-x/freego v1.1.37 h1:E+zsDfww/ItdvtL+hiKLhw0OFKwQV2ONpkOpeNtPHF8=
+github.com/godaddy-x/freego v1.1.37/go.mod h1:sRbL05Ca6uiSTvdb8CD9muOFmFYplTBXVAhCPT72cDc=
 github.com/godaddy-x/wallet-adapter v1.0.9 h1:RbC3OoMxEzXYv3+fZ5d7Vi/hoU6E0BVPgXBK+YUBoGQ=
 github.com/godaddy-x/wallet-adapter v1.0.9/go.mod h1:l2+ywGX+Ti+YCUc7rwZKUcKcqAwR6e6Qw2hcerHj/TQ=
 github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=

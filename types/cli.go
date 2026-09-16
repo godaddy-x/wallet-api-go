@@ -35,9 +35,10 @@ type CliFindWalletListRes struct {
 //easyjson:json
 type CliCreateMPCWalletReq struct {
 	common.BaseReq
-	Alias     string `json:"alias"`
-	Algorithm string `json:"algorithm"`         // ecdsa | ed25519
-	KeyMode   string `json:"keyMode,omitempty"` // mpc（默认）| single（nodeBindings[0] 单签）
+	Alias         string `json:"alias"`
+	Algorithm     string `json:"algorithm"`               // ecdsa | ed25519
+	KeyMode       string `json:"keyMode,omitempty"`       // mpc（默认）| single（nodeBindings[0] 单签）
+	SignThreshold int64  `json:"signThreshold,omitempty"` // 可选；0=默认门限；3→2|3，5→3|5
 }
 
 // CliCreateMPCWalletRes is the CreateMPCWallet response.

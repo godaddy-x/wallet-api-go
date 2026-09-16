@@ -3,14 +3,14 @@ module github.com/godaddy-x/wallet-api-go
 go 1.26
 
 require (
-	github.com/godaddy-x/freego v1.1.32
+	github.com/godaddy-x/freego v1.1.37
 	github.com/godaddy-x/wallet-adapter v1.0.9
 	github.com/mailru/easyjson v0.9.1
 )
 
 require (
 	filippo.io/mldsa v0.0.0-20260215214346-43d0283efc3e // indirect
-	github.com/godaddy-x/eccrypto v1.1.17 // indirect
+	github.com/godaddy-x/eccrypto v1.1.20 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/klauspost/compress v1.18.0 // indirect
