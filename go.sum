@@ -8,8 +8,8 @@ github.com/godaddy-x/eccrypto v1.1.20 h1:vNQ7wK7Vl3+/lCVNr/2+H2EJF+zcXT7bUD6+bp8
 github.com/godaddy-x/eccrypto v1.1.20/go.mod h1:yF2UZDeOaJ8U3DfmdaDP4by7Vr7SaWRpZ3d4zOczoUw=
 github.com/godaddy-x/freego v1.1.37 h1:E+zsDfww/ItdvtL+hiKLhw0OFKwQV2ONpkOpeNtPHF8=
 github.com/godaddy-x/freego v1.1.37/go.mod h1:sRbL05Ca6uiSTvdb8CD9muOFmFYplTBXVAhCPT72cDc=
-github.com/godaddy-x/wallet-adapter v1.0.9 h1:RbC3OoMxEzXYv3+fZ5d7Vi/hoU6E0BVPgXBK+YUBoGQ=
-github.com/godaddy-x/wallet-adapter v1.0.9/go.mod h1:l2+ywGX+Ti+YCUc7rwZKUcKcqAwR6e6Qw2hcerHj/TQ=
+github.com/godaddy-x/wallet-adapter v1.0.10 h1:OVuzMWwj2wmfz4cKPr8bK5kEnu/1xOKTlxjGOMOJkhk=
+github.com/godaddy-x/wallet-adapter v1.0.10/go.mod h1:l2+ywGX+Ti+YCUc7rwZKUcKcqAwR6e6Qw2hcerHj/TQ=
 github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
 github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/josharian/intern v1.0.0 h1:vlS4z54oSdjm0bgjRigI+G1HpF+tI+9rE5LLzOg8HmY=

@@ -4,7 +4,7 @@ go 1.26
 
 require (
 	github.com/godaddy-x/freego v1.1.37
-	github.com/godaddy-x/wallet-adapter v1.0.9
+	github.com/godaddy-x/wallet-adapter v1.0.10
 	github.com/mailru/easyjson v0.9.1
 )
 
